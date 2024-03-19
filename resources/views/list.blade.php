@@ -4,6 +4,8 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
     <title>List Page</title>
 </head>
 
@@ -30,21 +32,21 @@
     </div>
     <form action="/tasks" method="GET">
         <label for="task-select">Sort:</label>
-        <select name="sort" id="task-sort" onchange="submit(this.form)">
+        <select name="sort" id="task-sort" onchange="submit(this.form)" class="form-select w-25">
             <option value="">default</option>
             <option value="deadline" {{ isset($sort) && $sort === 'deadline' ? 'selected' : '' }}>deadline</option>
             <option value="latest" {{ isset($sort) && $sort === 'latest' ? 'selected' : '' }}>latest</option>
             <option value="oldest" {{ isset($sort) && $sort == 'oldest' ? 'selected' : '' }}>oldest</option>
         </select>
         <label for="task-filter">Filter:</label>
-        <select name="filter" id="task-filter" onchange="submit(this.form)">
+        <select name="filter" id="task-filter" onchange="submit(this.form)" class="form-select w-25">
             <option value="">default</option>
             <option value="1" {{ isset($filter) && $filter === '1' ? 'selected' : '' }}>completed</option>
             <option value="0" {{ isset($filter) && $filter === '0' ? 'selected' : '' }}>not-completed</option>
         </select>
     </form>
-    <table>
-        <tr>
+    <table class="table table-borderless table-sm">
+        <tr class="table-light">
             <th>
                 name
             </th>
@@ -74,13 +76,13 @@
                         <input type="hidden" name="id" value="{{ $task->id }}">
                         <input type="hidden" name="status" value="{{ $task->status }}">
                         <input type="checkbox" name="status" {{ $task->status ? 'checked' : '' }}
-                            disabled="disabled" />
-                        <button type="submit">complete</button>
+                            class="form-check-input" disabled />
+                        <button type="submit" class="btn btn-primary btn-sm">complete</button>
                     </form>
                 </td>
                 <td>
                     <a href="/tasks/{{ $task->id }}/edit" method="GET">
-                        <button type="submit">edit</button>
+                        <button type="submit" class="btn btn-success btn-sm">edit</button>
                     </a>
                 </td>
                 <td>
@@ -88,7 +90,7 @@
                         @csrf
                         @method('DELETE')
                         <input type="hidden" name="id" value="{{ $task->id }}">
-                        <button type="submit">delete</button>
+                        <button type="submit" class="btn btn-danger btn-sm">delete</button>
                     </form>
                 </td>
             </tr>
