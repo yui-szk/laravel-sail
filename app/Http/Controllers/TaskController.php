@@ -41,11 +41,6 @@ class TaskController extends Controller
         return view('list', compact('tasks', 'filter', 'sort'));
     }
 
-    public function create()
-    {
-        return view('create');
-    }
-
     public function store(Request $request): RedirectResponse
     {
         $request->validate([
