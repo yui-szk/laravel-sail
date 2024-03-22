@@ -24,6 +24,7 @@ class TaskFactory extends Factory
         return [
             'name' => $this->faker->word(),
             'deadline'=> $this->faker->dateTimeBetween('now', '1month'),
+            'created_at'=> $this->faker->dateTimeBetween('-1month', 'now'),
             'status' => $this->faker->boolean()
         ];
     }
