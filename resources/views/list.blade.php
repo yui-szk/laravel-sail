@@ -9,9 +9,9 @@
     <title>List Page</title>
 </head>
 
-<body>
+<body class="m-4">
     <h1>Todo List</h1>
-    <div>
+    <div class="my-2">
         <div>
             <form method="POST" action="/tasks">
                 @csrf
@@ -30,15 +30,15 @@
             </div>
         @endif
     </div>
-    <form action="/tasks" method="GET">
-        <label for="task-select">Sort:</label>
-        <select name="sort" id="task-sort" onchange="submit(this.form)" class="form-select w-25">
+    <form action="/tasks" method="GET" class="d-flex align-items-center my-3">
+        <label for="task-select" class="mx-2">Sort:</label>
+        <select name="sort" id="task-sort" onchange="submit(this.form)" class="form-select w-25 me-3">
             <option value="">default</option>
             <option value="deadline" {{ isset($sort) && $sort === 'deadline' ? 'selected' : '' }}>deadline</option>
             <option value="latest" {{ isset($sort) && $sort === 'latest' ? 'selected' : '' }}>latest</option>
             <option value="oldest" {{ isset($sort) && $sort == 'oldest' ? 'selected' : '' }}>oldest</option>
         </select>
-        <label for="task-filter">Filter:</label>
+        <label for="task-filter" class="mx-2">Filter:</label>
         <select name="filter" id="task-filter" onchange="submit(this.form)" class="form-select w-25">
             <option value="">default</option>
             <option value="1" {{ isset($filter) && $filter === '1' ? 'selected' : '' }}>completed</option>
