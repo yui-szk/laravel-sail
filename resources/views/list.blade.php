@@ -21,13 +21,13 @@
             </form>
         </div>
         @if ($errors->any())
-            <div>
-                <ul>
-                    @foreach ($errors->all() as $error)
-                        <li>{{ $error }}</li>
-                    @endforeach
-                </ul>
-            </div>
+        <div>
+            <ul>
+                @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
         @endif
     </div>
     <form action="/tasks" method="GET" class="d-flex align-items-center my-3">
@@ -59,49 +59,49 @@
             </th>
         </tr>
         @foreach ($tasks as $task)
-            <tr>
-                <td>
-                    {{ $task->name }}
-                </td>
-                <td>
-                    {{ $task->deadline }}
-                </td>
-                <td>
-                    {{ $task->created_at }}
-                </td>
-                <td>
-                    <form action="/tasks/{{ $task->id }}" method="POST">
-                        @csrf
-                        @method('PUT')
-                        <input type="hidden" name="id" value="{{ $task->id }}">
-                        <input type="hidden" name="status" value="{{ $task->status }}">
-                        <input type="checkbox" name="status" {{ $task->status ? 'checked' : '' }}
-                            class="form-check-input" disabled />
-                        <button type="submit" class="btn btn-primary btn-sm">complete</button>
-                    </form>
-                </td>
-                <td>
-                    <a href="/tasks/{{ $task->id }}/edit" method="GET">
-                        <button type="submit" class="btn btn-success btn-sm">edit</button>
-                    </a>
-                </td>
-                <td>
-                    <form onsubmit="return deleteTask();" action="/tasks/{{ $task->id }}" method="POST">
-                        @csrf
-                        @method('DELETE')
-                        <input type="hidden" name="id" value="{{ $task->id }}">
-                        <button type="submit" class="btn btn-danger btn-sm">delete</button>
-                    </form>
-                </td>
-            </tr>
+        <tr>
+            <td>
+                {{ $task->name }}
+            </td>
+            <td>
+                {{ $task->deadline }}
+            </td>
+            <td>
+                {{ $task->created_at }}
+            </td>
+            <td>
+                <form action="/tasks/{{ $task->id }}" method="POST">
+                    @csrf
+                    @method('PUT')
+                    <input type="hidden" name="id" value="{{ $task->id }}">
+                    <input type="hidden" name="status" value="{{ $task->status }}">
+                    <input type="checkbox" name="status" {{ $task->status ? 'checked' : '' }} class="form-check-input"
+                        disabled />
+                    <button type="submit" class="btn btn-primary btn-sm">complete</button>
+                </form>
+            </td>
+            <td>
+                <a href="/tasks/{{ $task->id }}/edit" method="GET">
+                    <button type="submit" class="btn btn-success btn-sm">edit</button>
+                </a>
+            </td>
+            <td>
+                <form onsubmit="return deleteTask();" action="/tasks/{{ $task->id }}" method="POST">
+                    @csrf
+                    @method('DELETE')
+                    <input type="hidden" name="id" value="{{ $task->id }}">
+                    <button type="submit" class="btn btn-danger btn-sm">delete</button>
+                </form>
+            </td>
+        </tr>
         @endforeach
     </table>
 </body>
 
 <script>
-    function deleteTask() {
-        return confirm('本当に削除しますか？') ? true : false;
-    }
+function deleteTask() {
+    return confirm('本当に削除しますか？') ? true : false;
+}
 </script>
 
 </html>
