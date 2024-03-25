@@ -9,17 +9,17 @@
     <title>Edit Page</title>
 </head>
 
-<body>
+<body class="m-3">
     <h1>Edit Page</h1>
     <div class="row">
-        <form method="POST" action="/tasks/{{ $task->id }}" class="form-group">
+        <form method="POST" action="/tasks/{{ $task->id }}" class="form-group w-25">
             @csrf
             @method('PUT')
 
-            <input type="hidden" name="id" value="{{ $task->id }}" class="form-control">
+            <input type="hidden" name="id" value="{{ $task->id }}">
             <input type="text" name="name" placeholder="task name" value="{{ $task->name }}"
-                class="form-control">
-            <input type="date" name="deadline" value="{{ $task->deadline }}" class="form-control">
+                class="form-control mb-3">
+            <input type="date" name="deadline" value="{{ $task->deadline }}" class="form-control mb-3">
             <button type="submit" class="btn btn-success">Edit</button>
         </form>
     </div>
