@@ -1,10 +1,10 @@
 services:
-    # composer:
-    #     build:
-    #         context: .
-    #         dockerfile: Dockerfile
-    #     volumes:
-    #         - ".:/var/www/html"
+    composer:
+        build:
+            context: .
+            dockerfile: Dockerfile
+        volumes:
+            - ".:/var/www/html"
     laravel.test:
         build:
             context: ./vendor/laravel/sail/runtimes/8.3
