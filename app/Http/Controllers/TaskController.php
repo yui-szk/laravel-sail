@@ -8,11 +8,15 @@ use Illuminate\Http\Request;
 
 class TaskController extends Controller
 {
+    // 関数とかクラスの機能説明
     public function index(Request $request)
     {
         $tasks = new Task;
         $filter = $request->filter;
         $sort = '';
+
+        // コントローラーでDBの操作してるので以下はModelに書くべき
+        // リクエストの値の正しさをチェックする
 
         switch ($request->sort) {
             case 'deadline':
@@ -23,8 +27,17 @@ class TaskController extends Controller
                 break;
             case 'oldest':
                 $sort = 'created_at|asc';
-                break;
         }
+
+        // arr[]={[_->_], [_->_]}とかでmap?する
+        // 別で関数にする
+        // クエリビルダー
+
+        // リクエストがあるかどうか->allかfilterとかか
+
+        $tasks = Task::all();
+        // 最初に
+        // 条件文がエラーでも値が表示される
 
         if ($filter != null && $sort != null) {
             $tasks = Task::whereStatus($filter)->orderby(explode('|', $sort)[0], explode('|', $sort)[1])->get();
@@ -32,9 +45,10 @@ class TaskController extends Controller
             $tasks = Task::whereStatus($filter)->get();
         } elseif ($sort != null) {
             $tasks = Task::orderby(explode('|', $sort)[0], explode('|', $sort)[1])->get();
-        } else {
-            $tasks = Task::all();
-        }
+        } 
+        // else文は意味なく書かないように
+
+        // isset, emptyとか　null以外
 
         $sort = $request->sort;
 
@@ -69,8 +83,18 @@ class TaskController extends Controller
     public function update(Request $request)
     {
         $task = Task::find($request->id);
+        // ルートでidでfindしてくる
+        // ModelBinding
 
+        // status:状態を３つ以上
+        // ２つならcompletedとか or
+        // completed_dateでデータがあるかないか
         if ($request->status === null) {
+        
+            // trueにならないケース
+
+            // バリデーションを別に書き出す->統一とか場所とか
+            // クライアントとリクエストを受け取るところとDB前
             $request->validate([
                 'name' => 'required|max:50',
                 'deadline' => 'nullable',

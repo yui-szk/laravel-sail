@@ -11,6 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
+        // アプリケーションを立ち上げた時に作成
         Schema::create('tasks', function (Blueprint $table) {
             $table->id();
             $table->string('name');
@@ -35,6 +36,7 @@ return new class extends Migration
      */
     public function down(): void
     {
+        // アプリケーションを停止した時に削除
         Schema::dropIfExists('tasks');
         Schema::dropIfExists('sessions');
     }

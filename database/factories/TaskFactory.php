@@ -22,6 +22,7 @@ class TaskFactory extends Factory
     public function definition(): array
     {
         return [
+            // 列名name->title
             'name' => $this->faker->word(),
             'deadline'=> $this->faker->dateTimeBetween('now', '1month'),
             'created_at'=> $this->faker->dateTimeBetween('-1month', 'now'),
@@ -29,3 +30,24 @@ class TaskFactory extends Factory
         ];
     }
 }
+
+// state:状態別にデータ定義
+// [ファクトリの状態]
+// public function definition()
+// {
+//     ...
+// }
+ 
+// public function completed()
+// {
+//     return $this->state(fn () => ['status' => true]);
+// }
+ 
+// public function notCompleted()
+// {
+//     return $this->state(fn () => ['status' => false]);
+// }
+ 
+// 使い方(in Seeder)
+// $dummyCompletedTask = Task::factory()->completed()->create();
+// $dummyNoCompletedTask = Task::factory()->notCompleted()->create();

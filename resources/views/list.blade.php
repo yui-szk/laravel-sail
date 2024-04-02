@@ -36,7 +36,7 @@
             <option value="">default</option>
             <option value="deadline" {{ isset($sort) && $sort === 'deadline' ? 'selected' : '' }}>deadline</option>
             <option value="latest" {{ isset($sort) && $sort === 'latest' ? 'selected' : '' }}>latest</option>
-            <option value="oldest" {{ isset($sort) && $sort == 'oldest' ? 'selected' : '' }}>oldest</option>
+            <option value="oldest" {{ isset($sort) && $sort === 'oldest' ? 'selected' : '' }}>oldest</option>
         </select>
         <label for="task-filter" class="mx-2">Filter:</label>
         <select name="filter" id="task-filter" onchange="submit(this.form)" class="form-select w-25">
