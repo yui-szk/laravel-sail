@@ -20,8 +20,6 @@ docker compose run laravel.test composer install
 docker compose up
 ```
 
-> > > > > > > hotfix/port-error
-
 ```bash
 php artisan migrate:fresh --seed --seeder=TaskSeeder
 ```
